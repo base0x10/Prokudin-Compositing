@@ -3,4 +3,7 @@ import numpy as np
 import composite as c
 import formatter as f
 
-list = f.split(c.testSet[1])
+list = []
+for e in c.testSet:
+    for i in f.split(e):
+        list.append(i)
