@@ -24,19 +24,14 @@ def crop(img):
     left_edge = 5
     # cut in on top border
     while upper_edge < y_max / 10 and np.mean(median[ 0 : upper_edge , 0 : x_max ]) > .8 * 255:
-        print(np.sum(median[ 0 : upper_edge , 0 : x_max ]))
-        print("upper_edge" + str(upper_edge))
         upper_edge = upper_edge + 3
     # cut in bottom border
     while lower_edge > y_max * .9 and np.mean(median[ lower_edge : y_max, 0 : x_max ]) > .8 * 255:
-        print(np.sum(median[ lower_edge: y_max, 0 : x_max ]))
-        print("lower_edge" + str(lower_edge))
-        lower_edge = lower_edge - 3
+       lower_edge = lower_edge - 3
     # right border
     while right_edge > x_max *.9 and np.mean(median[ 0 : y_max , right_edge : x_max ]) > .8 * 255:
         right_edge = right_edge - 3
     # left border
     while left_edge < x_max *.1 and np.mean(median[ 0 : y_max , 0 : left_edge]) > .8 * 255:
-        print(np.mean(median[ 0 : y_max , 0 : left_edge]))
         left_edge = left_edge + 3
     return img[upper_edge : lower_edge , left_edge : right_edge]
