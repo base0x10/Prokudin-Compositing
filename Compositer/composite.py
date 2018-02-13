@@ -41,11 +41,10 @@ def removeExtra(blue, green, red):
     red_img = red_img[r_y_off : max_y, r_x_off : max_x]
     return blue_img, green_img, red_img
 
+# runs a fine gausian kernel over image to smooth, and scales pixels to 
+#def clean(img):
+
+
 testDir = '../data-sets/design-set'
 testSet = makeSet(testDir)
-
-def testModule():
-    for i in testSet:
-        show(i)
-
 

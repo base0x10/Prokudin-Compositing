@@ -10,6 +10,8 @@ def split(img):
     images.append(img[0 : first_third, : ])
     images.append(img[first_third : second_third, : ])
     images.append(img[second_third :, :])
+    for i in range(len(images)):
+        images[i] = cv2.cvtColor(images[i], cv2.COLOR_BGR2GRAY)
     return images
 
 def crop(img):
@@ -35,3 +37,7 @@ def crop(img):
     while left_edge < x_max *.1 and np.mean(median[ 0 : y_max , 0 : left_edge]) > .8 * 255:
         left_edge = left_edge + 3
     return img[upper_edge : lower_edge , left_edge : right_edge]
+
+def clean(img):
+    img = cv2.GaussianBlur(img,(3,3),0)
+    return cv2.normalize(img,None,0,255,cv2.NORM_MINMAX)
