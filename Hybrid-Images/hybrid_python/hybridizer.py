@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 from skimage import color
+import matplotlib.pyplot as plt
 
 def toGray(img):
     return color.rgb2gray(img)
@@ -18,11 +19,21 @@ def hybrid_image(im1, im2, sigma1, sigma2):
 
     im2 = highPass(im2, sigma2)
     im2 = toGray(im2)
+    print("high pass")
+    plt.imshow(im2)
+    plt.ginput(1)
+    plt.imshow(getFFT(im2))
+    plt.ginput(1)
     im2 = np.divide(im2, 2)
     im2 = cv.merge((im2, im2, im2))
 
     im1 = lowPass(im1, sigma1)
     #im1 = toGray(im1)
+    print("low pass")
+    plt.imshow(im1)
+    plt.ginput(1)
+    plt.imshow(getFFT(im1))
+    plt.ginput(1)
     im1 = np.divide(im1, 2)
     #im1 = cv.merge((im1, im1, im1))
 
